@@ -23,16 +23,22 @@
     // 🧠 Example of usage:
     // buildPeter() // should return { firstName: "Peter", lastName: "Pan", age: 12 }
     function buildPeter() {
-
+      return { firstName: "Peter", lastName: "Pan", age: 12 };
     }
+        console.log(buildPeter()); 
+
+    
 
     // 👉 CHALLENGE 2
     // 🧠 The function buildUser takes three arguments and uses them to build an object and return it.
     // 🧠 Example of usage:
     // buildUser("John", "Smith", 30) // should return { firstName: "John", lastName: "Smith", age: 30 }
     function buildUser(firstName, lastName, age) {
+    return { firstName: firstName, lastName: lastName, age: age };
+     }
 
-    }
+
+     console.log(buildUser("John", "Smith", 30));
 
     // 👉 CHALLENGE 3
     // 🧠 The function deletePrice takes an object as its argument and deletes its "price" property if it exists.
@@ -42,9 +48,19 @@
     // 🧠 Examples of usage:
     // deletePrice({ item: "Tesla Model 3", price: 40000 }) // should return { item: "Tesla Model 3" }
     // deletePrice({ item: "Kobo Libra 2" }) // should return { item: "Kobo Libra 2", priceless: true }
-    function deletePrice() {
-
+    function deletePrice(obj) {
+      if (obj.hasOwnProperty('price')) {
+        delete obj.price;
+    } else {
+        obj.priceless = true;
     }
+    return obj;
+}
+
+     console.log(deletePrice({ item: "Tesla Model 3", price: 40000 })); // Output: { item: "Tesla Model 3" }
+     console.log(deletePrice({ item: "Kobo Libra 2" }));
+
+    
 
     // 👉 CHALLENGE 4
     // 🧠 The function evenList takes an array as its argument and returns true if the array has an even number of elements, false otherwise.
@@ -53,8 +69,11 @@
     // evenList(['a']) // should return false
     // evenList(['a', 'b']) // should return true
     function evenList(arr) {
+    return arr.length % 2 === 0;
+  }
 
-    }
+console.log(evenList(['a'])); 
+console.log(evenList(['a', 'b'])); 
 
     // 👉 CHALLENGE 5
     // 🧠 The function firstOrLast takes an array as the first argument, and a Boolean as the second.
@@ -62,9 +81,16 @@
     // 🧠 Examples of usage:
     // firstOrLast(['a', 'b'], true) // should return 'a'
     // firstOrLast(['a', 'b'], false) // should return 'b'
-    function firstOrLast() {
-
+    function firstOrLast(arr, isFirst) {
+    if (isFirst) {
+        return arr[0];
+    } else {
+        return arr[arr.length - 1];
     }
+}
+
+console.log(firstOrLast(['a', 'b'], true)); 
+console.log(firstOrLast(['a', 'b'], false)); 
 
     // 👉 CHALLENGE 6
     // 🧠 The function pushElement takes an array as the first argument, and any value we wish as the second.
@@ -72,9 +98,14 @@
     // 🧠 Examples of usage:
     // pushElement([], 1) // should return [1]
     // pushElement(['a', 'b'], 'c') // should return ['a', 'b', 'c']
-    function pushElement() {
+    function pushElement(arr, value) {
+    arr.push(value);
+    return arr;
+}
 
-    }
+
+console.log(pushElement([], 1)); 
+console.log(pushElement(['a', 'b'], 'c'));
 
     // 👉 CHALLENGE 7
     // 🧠 The function stripX takes a string as its argument.
@@ -88,9 +119,22 @@
     // 🧠 At each iteration of the loop, if the current character is not "x", then add it to the end of the result array.
     // 🧠 You can merge the result array back into a string by using join. Example: ["f", "o", "o"].join("") yields "foo"
     // 🧠 Do not forget to return your rejoined string!
-    function stripX() {
-
+    function stripX(inputString) {
+    
+    const characters = inputString.split("");
+    const resultArray = [];
+      for (let i = 0; i < characters.length; i++) {
+        
+        if (characters[i] !== "x") {
+            resultArray.push(characters[i]);
+        }
     }
+     const resultString = resultArray.join("");
+        return resultString;
+}
+
+       console.log(stripX("xenomorph")); 
+       console.log(stripX("paradox"));
 
     // 👉 CHALLENGE 8
     // 🧠 The function stripChar takes a string as its first argument and a character as its second argument.
@@ -101,9 +145,15 @@
     // ❗ Important Notes:
     // 🧠 Try to solve this problem without looking at how you solved the previous one.
     // 🧠 If you need to look, do not copy & paste code. Take a peek and then work from memory!
-    function stripChar() {
+    function stripChar(inputString, charToRemove) {
+    
+    const resultString = inputString.replace(new RegExp(charToRemove, 'g'), '');
+    return resultString;
+}
 
-    }
+
+console.log(stripChar("xenomorph", "x")); 
+console.log(stripChar("paradox", "a")); 
 
     // 👉 CHALLENGE 9
     // 🧠 The function getProps takes an object as its argument.
@@ -114,9 +164,16 @@
     // getProps({ lastName: "Smith", age: 35 }) // should return ["lastName"]
     // getProps({ firstName: "Jane", married: false }) // should return ["firstName"]
     // getProps({ name: "Bamby", favFood: "flowers" }) // should return ["name", "favFood"]
-    function getProps() {
+    function getProps(obj) {
+    
+    const propsArray = Object.keys(obj);
+    const filteredArray = propsArray.filter(prop => prop !== "age" && prop !== "married");
+    return filteredArray;
+}
 
-    }
+console.log(getProps({ lastName: "Smith", age: 35 })); 
+console.log(getProps({ firstName: "Jane", married: false })); 
+console.log(getProps({ name: "Bamby", favFood: "flowers" }));
 
     // 🧪 TESTS, do not work below this line
     // 🧪 TESTS, do not work below this line
